@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {app} from '../firebase'
 import { Link } from "react-router-dom";
+import OAuth from "./OAuthGoogle";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -57,10 +58,12 @@ const SignUp = () => {
         />
         <button>Submit</button>
       </form>
+      <OAuth/>
       {(password !== confirmPassword) &&
       (<h2>Passwords Must be same</h2>)
 
       }
+
       <Link to={`/`}>
         <h4>Have an account? Sign In</h4>
       </Link>

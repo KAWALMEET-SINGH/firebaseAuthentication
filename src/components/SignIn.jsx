@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase";
+import OAuth from "./OAuthGoogle";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+const navigate = useNavigate();
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -20,6 +21,8 @@ const SignIn = () => {
       const user = userCredetial.user;
       sessionStorage.setItem('access_token',JSON.stringify(user.accessToken))
       sessionStorage.setItem('current_user',JSON.stringify(user))
+      navigate('/authenticated')
+      
     } catch (error) {
       console.log(error);
     }
@@ -48,6 +51,7 @@ const SignIn = () => {
         />
         <button>Submit</button>
       </form>
+      <OAuth/>
       <Link to={`/signUp`}>
         <h4>Create an account</h4>
       </Link>

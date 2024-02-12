@@ -5,6 +5,8 @@ import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
+import PrivateRoutes from './components/PrivateRoutes'
+import Home from './pages/Home'
 
 function App() {
 
@@ -15,6 +17,9 @@ function App() {
      <Routes>
       <Route path='/' element={<SignIn/>}/>
       <Route path='/signUp' element={<SignUp/>}/>
+      <Route element={<PrivateRoutes/>}>
+        <Route path='/authenticated' element={<Home/>} />
+      </Route>
 </Routes>
      </BrowserRouter>
     </>
